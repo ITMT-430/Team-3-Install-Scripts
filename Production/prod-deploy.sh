@@ -166,7 +166,7 @@ echo -e "\n--- Restoring database from server. ---\n"
 mysql -uroot -p$DBPASSWD -e "USE $DBNAME"
 
 #pull backup down
-mysql -u root -p$DBPASSWD irl < /var/www/schema.sql
+mysql -u root -p$DBPASSWD $DBNAME < /var/www/schema.sql
 
 echo -e "\n--- Getting the latest files from team-3-irl ---\n"
 git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
@@ -199,10 +199,6 @@ rm -rf /var/www/team3-vagrant
 rm -rf /var/www/html/index.html
 git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
 
-
-echo -e "\n--- Add environment variables locally for artisan ---\n"
-echo -e "\n--- TEST YOUR CONNECTION: 192.168.101.102 ---\n"
-echo -e "\n--- Happy Coding:) ---\n"
 cat >> ~/.zshrc <<EOF
 
 # Set envvars
@@ -237,5 +233,5 @@ echo $DBPASSWD
 echo $DBPASSWD>>/randopw.txt
 echo '<?php'>/var/www/passwords.php
 echo '$dbusername="root";'>>/var/www/passwords.php
-echo '$dbpassword="' $DBPASSWD '";'>>/var/www/passwords.php
+echo '$dbpassword="'$DBPASSWD'";'>>/var/www/passwords.php
 echo '?>'>>/var/www/passwords.php
