@@ -136,7 +136,7 @@ if [ $USER = "root" ]; then
     apt-get update
     apt-get install -y git
     apt-get install -y python-setuptools python-dev libxslt1-dev libxml2 libxml2-dev zlib1g-dev
-    apt-get remove python-requests
+    apt-get remove -y python-requests
     git clone https://github.com/jhajek/euca2ools.git /euca2ools
     cd /euca2ools
     git checkout origin/maint-3.1

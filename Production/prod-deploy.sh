@@ -166,7 +166,7 @@ echo -e "\n--- Restoring database from server. ---\n"
 mysql -uroot -p$DBPASSWD -e "USE $DBNAME"
 
 #pull backup down
-mysql -u root -p$DBPASSWD $DBNAME < /vagrant/backup.sql
+mysql -u root -p$DBPASSWD $DBNAME < /var/www/schema.php
 
 echo -e "\n--- Getting the latest files from team-3-irl ---\n"
 git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
@@ -203,7 +203,7 @@ git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
 echo -e "\n--- Add environment variables locally for artisan ---\n"
 echo -e "\n--- TEST YOUR CONNECTION: 192.168.101.102 ---\n"
 echo -e "\n--- Happy Coding:) ---\n"
-cat >> /home/vagrant/.zshrc <<EOF
+cat >> ~/.zshrc <<EOF
 
 # Set envvars
 export APP_ENV=$APPENV
