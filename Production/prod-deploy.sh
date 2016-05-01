@@ -166,7 +166,7 @@ echo -e "\n--- Restoring database from server. ---\n"
 mysql -uroot -p$DBPASSWD -e "USE $DBNAME"
 
 #pull backup down
-mysql -u root -p$DBPASSWD $DBNAME < /var/www/schema.php
+mysql -u root -p $DBPASSWD irl < /var/www/schema.sql
 
 echo -e "\n--- Getting the latest files from team-3-irl ---\n"
 git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
