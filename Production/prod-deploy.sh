@@ -205,6 +205,8 @@ mysql -u root -p$DBPASSWD irl < /var/www/schema.sql
 echo -e "\n--- Add environment variables locally for artisan ---\n"
 echo -e "\n--- TEST YOUR CONNECTION: 192.168.101.102 ---\n"
 echo -e "\n--- Happy Coding:) ---\n"
+=======
+>>>>>>> d5ee45c963a0058f4f4288bbff910ead53d4db49
 cat >> ~/.zshrc <<EOF
 
 # Set envvars
@@ -239,5 +241,5 @@ echo $DBPASSWD
 echo $DBPASSWD>>/randopw.txt
 echo '<?php'>/var/www/passwords.php
 echo '$dbusername="root";'>>/var/www/passwords.php
-echo '$dbpassword="' $DBPASSWD '";'>>/var/www/passwords.php
+echo '$dbpassword="'$DBPASSWD'";'>>/var/www/passwords.php
 echo '?>'>>/var/www/passwords.php
