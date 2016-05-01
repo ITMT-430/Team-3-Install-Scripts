@@ -67,9 +67,7 @@ echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-sel
 echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
 apt-get -y install mysql-server-5.5 phpmyadmin
 
-echo -e "\n--- Setting up our MySQL user and db ---\n"
-mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
-mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWD'"
+
 
 echo -e "\n--- Installing PHP-specific packages ---\n"
 apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc > /dev/null 2>&1
@@ -162,11 +160,7 @@ service apache2 restart > /dev/null 2>&1
 echo -e "\n--- Creating a symlink for future phpunit use ---\n"
 ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit
 
-echo -e "\n--- Restoring database from server. ---\n"
-mysql -uroot -p$DBPASSWD -e "USE $DBNAME"
 
-#pull backup down
-mysql -u root -p$DBPASSWD irl < /var/www/schema.sql
 
 echo -e "\n--- Getting the latest files from team-3-irl ---\n"
 git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
@@ -198,6 +192,16 @@ cp -R /var/www/team3-vagrant/clone-in-here/* /var/www/
 rm -rf /var/www/team3-vagrant
 rm -rf /var/www/html/index.html
 git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
+
+echo -e "\n--- Setting up our MySQL user and db ---\n"
+mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
+mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWD'"
+
+echo -e "\n--- Restoring database from server. ---\n"
+mysql -uroot -p$DBPASSWD -e "USE $DBNAME"
+
+#pull backup down
+mysql -u root -p$DBPASSWD irl < /var/www/schema.sql
 
 
 echo -e "\n--- Add environment variables locally for artisan ---\n"
