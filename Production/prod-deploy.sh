@@ -2,37 +2,58 @@
 
 # Usage: bash <(curl -s https://raw.githubusercontent.com/ITMT-430/Team-3-Install-Scripts/master/Production/prod-deploy.sh)
 
+# Install log at /var/log/Awesomesauce/install.log
+
 #---------------------------Base System Install - should be run on every system------------------------------
-apt-get update
-apt-get install -y curl
-apt-get install -y git
-apt-get install -y vim
-apt-get install -y zsh
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-cp ~/.zshrc ~/.zshrc.orig
-mkdir /bs
-cd /bs
-git clone https://github.com/thegeekkid/zshconfig.git
-cd zshconfig
-git checkout teamproject
-cp terminalparty.zsh-theme ~/.oh-my-zsh/themes/terminalparty.zsh-theme
-cp zshrc ~/.zshrc
-apt-get install -y apache2
-apt-get install -y build-essential
-apt-get install -y php5
-apt-get install -y php5-dev
-apt-get install -y php-pear
-apt-get install -y php-cas
-pear channel-discover pear.phing.info
-pear install phing/phing
-pear install VersionControl_Git-alpha
+echo '---------------------------Base System Install - should be run on every system------------------------------'>>/var/log/Awesomesauce/install.log
+
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*                                      *'
+  echo '****************************************'
+  
+  mkdir /var/log/Awesomesauce
+
+apt-get update>>/var/log/Awesomesauce/install.log
+apt-get install -y curl>>/var/log/Awesomesauce/install.log
+apt-get install -y git>>/var/log/Awesomesauce/install.log
+apt-get install -y vim>>/var/log/Awesomesauce/install.log
+apt-get install -y zsh>>/var/log/Awesomesauce/install.log
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh>>/var/log/Awesomesauce/install.log
+cp ~/.zshrc ~/.zshrc.orig>>/var/log/Awesomesauce/install.log
+mkdir /bs>>/var/log/Awesomesauce/install.log
+cd /bs>>/var/log/Awesomesauce/install.log
+git clone https://github.com/thegeekkid/zshconfig.git>>/var/log/Awesomesauce/install.log
+cd zshconfig>>/var/log/Awesomesauce/install.log
+git checkout teamproject>>/var/log/Awesomesauce/install.log
+cp terminalparty.zsh-theme ~/.oh-my-zsh/themes/terminalparty.zsh-theme>>/var/log/Awesomesauce/install.log
+cp zshrc ~/.zshrc>>/var/log/Awesomesauce/install.log
+apt-get install -y apache2>>/var/log/Awesomesauce/install.log
+apt-get install -y build-essential>>/var/log/Awesomesauce/install.log
+apt-get install -y php5>>/var/log/Awesomesauce/install.log
+apt-get install -y php5-dev>>/var/log/Awesomesauce/install.log
+apt-get install -y php-pear>>/var/log/Awesomesauce/install.log
+apt-get install -y php-cas>>/var/log/Awesomesauce/install.log
+pear channel-discover pear.phing.info>>/var/log/Awesomesauce/install.log
+pear install phing/phing>>/var/log/Awesomesauce/install.log
+pear install VersionControl_Git-alpha>>/var/log/Awesomesauce/install.log
 #---------------------------------------End Base System Install----------------------------------------------
 
 #-------------------------------------------Vagrant copy-----------------------------------------------------
+echo '-------------------------------------------Vagrant copy-----------------------------------------------------'>>/var/log/Awesomesauce/install.log
 
 # This portion adapted from https://gist.github.com/rrosiek/8190550
 
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*                                      *'
+  echo '****************************************'
 
 # Variables
 APPENV=local
@@ -41,137 +62,153 @@ DBNAME=irl
 DBUSER=root
 DBPASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-echo -e "\n--- Mkay, installing now... ---\n"
-apt-get install -y debconf-utils
 
-echo -e "\n--- Updating packages list ---\n"
-apt-get -qq update
+apt-get install -y debconf-utils>>/var/log/Awesomesauce/install.log
+
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*                                      *'
+  echo '****************************************'
+
+apt-get -qq update>>/var/log/Awesomesauce/install.log
 
 echo -e "\n--- Install base packages ---\n"
-apt-get -y install vim curl build-essential python-software-properties git > /dev/null 2>&1
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*                                      *'
+  echo '****************************************'
+apt-get -y install vim curl build-essential python-software-properties git >>/var/log/Awesomesauce/install.log
 
-echo -e "\n--- Add some repos to update our distro ---\n"
-add-apt-repository ppa:ondrej/php5 > /dev/null 2>&1
-add-apt-repository ppa:chris-lea/node.js > /dev/null 2>&1
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*                                      *'
+  echo '****************************************'
 
-echo -e "\n--- Updating packages list ---\n"
-apt-get update
+add-apt-repository ppa:ondrej/php5 >>/var/log/Awesomesauce/install.log
+add-apt-repository ppa:chris-lea/node.js >>/var/log/Awesomesauce/install.log
+
+apt-get update>>/var/log/Awesomesauce/install.log
 
 echo -e "\n--- Install MySQL specific packages and settings ---\n"
-echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
-apt-get -y install mysql-server-5.5 phpmyadmin
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*                                      *'
+  echo '****************************************'
+echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
+echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
+echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections >>/var/log/Awesomesauce/install.log
+echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
+echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
+echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
+echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections>>/var/log/Awesomesauce/install.log
+apt-get -y install mysql-server-5.5 phpmyadmin >>/var/log/Awesomesauce/install.log
 
 
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*                                      *'
+  echo '****************************************'
+apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc >>/var/log/Awesomesauce/install.log
 
-echo -e "\n--- Installing PHP-specific packages ---\n"
-apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc > /dev/null 2>&1
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*           -Configuring Apache stuff  *'
+  echo '*                                      *'
+  echo '****************************************'
 
-echo -e "\n--- Enabling mod-rewrite ---\n"
-a2enmod rewrite > /dev/null 2>&1
+a2enmod rewrite >>/var/log/Awesomesauce/install.log
 
-echo -e "\n--- Allowing Apache override to all ---\n"
-sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf >>/var/log/Awesomesauce/install.log
 
+sed -i "s/disable_functions = .*//" /etc/php5/cli/php.ini >>/var/log/Awesomesauce/install.log
 
-#for testing
-#echo -e "\n--- We definitly need to see the PHP errors, turning them on ---\n"
-#sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
-#sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
+echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf >>/var/log/Awesomesauce/install.log
 
-echo -e "\n--- Turn off disabled pcntl functions so we can use Boris ---\n"
-sed -i "s/disable_functions = .*//" /etc/php5/cli/php.ini
-
-echo -e "\n--- Configure Apache to use phpmyadmin ---\n"
-echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf
-#cat > /etc/apache2/conf-available/phpmyadmin.conf << "EOF"
-#<VirtualHost *:81>
-#    ServerAdmin webmaster@localhost
-#    DocumentRoot /usr/share/phpmyadmin
-#    DirectoryIndex index.php
-#    ErrorLog ${APACHE_LOG_DIR}/phpmyadmin-error.log
-#    CustomLog ${APACHE_LOG_DIR}/phpmyadmin-access.log combined
-#</VirtualHost>
-#EOF
-#a2enconf phpmyadmin > /dev/null 2>&1
-
-#echo -e "\n--- Add environment variables to Apache ---\n"
-#Put DNS info below
-#cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
-#<VirtualHost *:80>
-#    ServerName irl.sat.iit.edu
-#    Redirect / https://irl.sat.iit.edu
-#    ServerAdmin webmaster@localhost
-#    DocumentRoot /var/www/html
-#    ErrorLog \${APACHE_LOG_DIR}/error.log
-#    CustomLog \${APACHE_LOG_DIR}/access.log combined
-#    SetEnv APP_ENV $APPENV
-#    SetEnv DB_HOST $DBHOST
-#    SetEnv DB_NAME $DBNAME
-#    SetEnv DB_USER $DBUSER
-#    SetEnv DB_PASS $DBPASSWD
-#</VirtualHost>
-#EOF
-
-#cat > /etc/apache2/sites-enabled/default-ssl.conf <<EOF
-#<VirtualHost _default_:443>
-#    ServerName irl.sat.iit.edu
-#    ServerAlias www.irl.sat.iit.edu
-#    ServerAdmin webmaster@localhost
-#    DocumentRoot /var/www/html
-#    ErrorLog \${APACHE_LOG_DIR}/error.log
-#    CustomLog \${APACHE_LOG_DIR}/access.log combined
-#    SSLEngine on
-#    SetEnv APP_ENV $APPENV
-#    SetEnv DB_HOST $DBHOST
-#    SetEnv DB_NAME $DBNAME
-#    SetEnv DB_USER $DBUSER
-#    SetEnv DB_PASS $DBPASSWD
-#</VirtualHost>
-#EOF
-
-echo -e "\n--- Restarting Apache ---\n"
-service apache2 restart > /dev/null 2>&1
-
-#Don't need this yet
-#echo -e "\n--- Installing Composer for PHP package management ---\n"
-#curl --silent https://getcomposer.org/installer | php > /dev/null 2>&1
-#mv composer.phar /usr/local/bin/composer
-
-#echo -e "\n--- Installing NodeJS and NPM ---\n"
-#apt-get -y install nodejs > /dev/null 2>&1
-#curl --silent https://npmjs.org/install.sh | sh > /dev/null 2>&1
-
-#echo -e "\n--- Installing javascript components ---\n"
-#npm install -g gulp bower > /dev/null 2>&1
-
-#echo -e "\n--- Updating project components and pulling latest versions ---\n"
-#cd /vagrant
-#sudo -u vagrant -H sh -c "composer install" > /dev/null 2>&1
-#sudo -u vagrant -H sh -c "npm install" > /dev/null 2>&1
-#sudo -u vagrant -H sh -c "bower install -s" > /dev/null 2>&1
-#sudo -u vagrant -H sh -c "gulp" > /dev/null 2>&1
-
-echo -e "\n--- Creating a symlink for future phpunit use ---\n"
-ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit
+service apache2 restart > /dev/null 2>&1 >>/var/log/Awesomesauce/install.log
 
 
-echo -e "\n--- Getting the latest files from team-3-irl ---\n"
-git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
+ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit >>/var/log/Awesomesauce/install.log
+
+
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*           -Configuring Apache stuff  *'
+  echo '*           -Preparing to get files.   *'
+  echo '*                                      *'
+  echo '****************************************'
+
+git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html >>/var/log/Awesomesauce/install.log
 cd /var/www
 echo "|1|9OsmSEuZ5EMLdubXJqvGQWKZy7U=|jPTfKv77HnP0Y43rUWVYFEHTYYg= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 |1|4kcqAWcBo5grhb07eErD5NS2jd0=|WQmwnrFYtZtb7St9xOaVwkxSyjM= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 ">>/root/.ssh/known_hosts
 
 ssh-keygen -t rsa -b 4096 -C "brian@geekkidconsulting.com" -f /root/.ssh/gh_rsa -N ""
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/gh_rsa
-nothing=""
+eval "$(ssh-agent -s)" >>/var/log/Awesomesauce/install.log
+ssh-add ~/.ssh/gh_rsa >>/var/log/Awesomesauce/install.log
+nothing="" >>/var/log/Awesomesauce/install.log
 clear
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "+                                                                            +"
@@ -186,28 +223,83 @@ cat ~/.ssh/gh_rsa.pub
 read -p "Select the text to copy, the press enter to copy (in putty)" nothing
 clear
 read -p "Press enter to continue." nothing
-git clone git@github.com:ITMT-430/team3-vagrant.git
-cp -R /var/www/team3-vagrant/clone-in-here/* /var/www/
-rm -rf /var/www/team3-vagrant
-rm -rf /var/www/html/index.html
-git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
+
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*           -Configuring Apache stuff  *'
+  echo '*           -Preparing to get files    *'
+  echo '*           -Getting current files     *'
+  echo '*                                      *'
+  echo '****************************************'
+
+git clone git@github.com:ITMT-430/team3-vagrant.git >>/var/log/Awesomesauce/install.log
+cp -R /var/www/team3-vagrant/clone-in-here/* /var/www/ >>/var/log/Awesomesauce/install.log
+rm -rf /var/www/team3-vagrant >>/var/log/Awesomesauce/install.log
+rm -rf /var/www/html/index.html >>/var/log/Awesomesauce/install.log
+git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html >>/var/log/Awesomesauce/install.log
 
 
-echo -e "\n--- Setting up our MySQL user and db ---\n"
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*           -Configuring Apache stuff  *'
+  echo '*           -Preparing to get files    *'
+  echo '*           -Getting current files     *'
+  echo '*           -Setting MySQL user & DB   *'
+  echo '*                                      *'
+  echo '****************************************'
+
 mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
 mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWD'"
 
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*           -Configuring Apache stuff  *'
+  echo '*           -Preparing to get files    *'
+  echo '*           -Getting current files     *'
+  echo '*           -Setting MySQL user & DB   *'
+  echo '*           -Restoring database        *'
+  echo '*                                      *'
+  echo '****************************************'
 
-echo -e "\n--- Restoring database from server. ---\n"
 mysql -uroot -p$DBPASSWD -e "USE $DBNAME"
 
 #pull backup down
 mysql -u root -p$DBPASSWD irl < /var/www/schema.sql
 
 
-echo -e "\n--- Add environment variables locally for artisan ---\n"
-echo -e "\n--- TEST YOUR CONNECTION: 192.168.101.102 ---\n"
-echo -e "\n--- Happy Coding:) ---\n"
 cat >> ~/.zshrc <<EOF
 
 # Set envvars
@@ -218,11 +310,33 @@ export DB_USER=$DBUSER
 export DB_PASS=$DBPASSWD
 EOF
 
+clear
+  echo '****************************************'
+  echo '*                                      *'
+  echo '*         Production Machine           *'
+  echo '*           -Base system config        *'
+  echo '*           -Production Configuration  *'
+  echo '*           -Updating packages list    *'
+  echo '*           -Installing dependancies   *'
+  echo '*           -Downloading some random   *'
+  echo '*            files                     *'
+  echo '*           -Installing MySQL packages *'
+  echo '*           -Installing MySQL settings *'
+  echo '*           -Installing PHP packages   *'
+  echo '*           -Configuring Apache stuff  *'
+  echo '*           -Preparing to get files    *'
+  echo '*           -Getting current files     *'
+  echo '*           -Setting MySQL user & DB   *'
+  echo '*           -Restoring database        *'
+  echo '*           -Getting a SSL certificate *'
+  echo '*                                      *'
+  echo '****************************************'
+
 cd /bs
-git clone https://github.com/letsencrypt/letsencrypt
+git clone https://github.com/letsencrypt/letsencrypt >>/var/log/Awesomesauce/install.log
 cd letsencrypt
-a2enmod ssl
-service apache2 restart
+a2enmod ssl >>/var/log/Awesomesauce/install.log
+service apache2 restart >>/var/log/Awesomesauce/install.log
 # WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!
 # WARNING!                                          WARNING!
 # WARNING! Remove --test-cert for real deployment.  WARNING!

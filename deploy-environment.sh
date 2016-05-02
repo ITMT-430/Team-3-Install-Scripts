@@ -106,9 +106,7 @@ function production {
   read -p "Did the script complete successfully? (Y/n)" confirm
   if [ ${confirm} = "Y" ];
   then
-    
-    #read -p "Jenkins should be up and running."
-    echo Script not finished yet.
+    echo Production configured!
   else
     read -p "Are you sure? (Y/n)" confirm
     if [ ${confirm} = "Y" ];
@@ -124,7 +122,8 @@ function production {
 }
 
 function everything {
-  echo "Function ""everything"" isn't ready yet."
+  jankie
+  production
   mainmenu
 }
 
