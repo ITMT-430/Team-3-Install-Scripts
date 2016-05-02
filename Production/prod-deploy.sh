@@ -342,7 +342,7 @@ service apache2 restart >>/var/log/Awesomesauce/install.log
 # WARNING! Remove --test-cert for real deployment.  WARNING!
 # WARNING!                                          WARNING!
 # WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!
-./letsencrypt-auto --email info@geekkidconsulting.com --agree-tos --test-cert --text --apache -d irl.sat.iit.edu --redirect --quiet
+./letsencrypt-auto --email info@geekkidconsulting.com --agree-tos --test-cert --text --apache -d illinoistechirl.com --redirect --quiet
 
 clear
 echo "+++++++++++++++++++++++++++++++++++++"
