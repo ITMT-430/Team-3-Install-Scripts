@@ -15,6 +15,7 @@ echo '---------------------------Base System Install - should be run on every sy
   echo '****************************************'
   
   mkdir /var/log/Awesomesauce
+  touch /var/log/Awesomesauce
 
 apt-get update >>/var/log/Awesomesauce/install.log
 apt-get install -y curl >>/var/log/Awesomesauce/install.log
@@ -106,9 +107,8 @@ clear
 add-apt-repository ppa:ondrej/php5 >>/var/log/Awesomesauce/install.log
 add-apt-repository ppa:chris-lea/node.js >>/var/log/Awesomesauce/install.log
 
-apt-get update>>/var/log/Awesomesauce/install.log
+apt-get update >>/var/log/Awesomesauce/install.log
 
-echo -e "\n--- Install MySQL specific packages and settings ---\n"
 clear
   echo '****************************************'
   echo '*                                      *'
