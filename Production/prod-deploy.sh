@@ -16,29 +16,29 @@ echo '---------------------------Base System Install - should be run on every sy
   
   mkdir /var/log/Awesomesauce
 
-apt-get update>>/var/log/Awesomesauce/install.log
-apt-get install -y curl>>/var/log/Awesomesauce/install.log
-apt-get install -y git>>/var/log/Awesomesauce/install.log
-apt-get install -y vim>>/var/log/Awesomesauce/install.log
-apt-get install -y zsh>>/var/log/Awesomesauce/install.log
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh>>/var/log/Awesomesauce/install.log
-cp ~/.zshrc ~/.zshrc.orig>>/var/log/Awesomesauce/install.log
-mkdir /bs>>/var/log/Awesomesauce/install.log
-cd /bs>>/var/log/Awesomesauce/install.log
-git clone https://github.com/thegeekkid/zshconfig.git>>/var/log/Awesomesauce/install.log
-cd zshconfig>>/var/log/Awesomesauce/install.log
-git checkout teamproject>>/var/log/Awesomesauce/install.log
-cp terminalparty.zsh-theme ~/.oh-my-zsh/themes/terminalparty.zsh-theme>>/var/log/Awesomesauce/install.log
-cp zshrc ~/.zshrc>>/var/log/Awesomesauce/install.log
-apt-get install -y apache2>>/var/log/Awesomesauce/install.log
-apt-get install -y build-essential>>/var/log/Awesomesauce/install.log
-apt-get install -y php5>>/var/log/Awesomesauce/install.log
-apt-get install -y php5-dev>>/var/log/Awesomesauce/install.log
-apt-get install -y php-pear>>/var/log/Awesomesauce/install.log
-apt-get install -y php-cas>>/var/log/Awesomesauce/install.log
-pear channel-discover pear.phing.info>>/var/log/Awesomesauce/install.log
-pear install phing/phing>>/var/log/Awesomesauce/install.log
-pear install VersionControl_Git-alpha>>/var/log/Awesomesauce/install.log
+apt-get update >>/var/log/Awesomesauce/install.log
+apt-get install -y curl >>/var/log/Awesomesauce/install.log
+apt-get install -y git >>/var/log/Awesomesauce/install.log
+apt-get install -y vim >>/var/log/Awesomesauce/install.log
+apt-get install -y zsh >>/var/log/Awesomesauce/install.log
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh >>/var/log/Awesomesauce/install.log
+cp ~/.zshrc ~/.zshrc.orig >>/var/log/Awesomesauce/install.log
+mkdir /bs >>/var/log/Awesomesauce/install.log
+cd /bs >>/var/log/Awesomesauce/install.log
+git clone https://github.com/thegeekkid/zshconfig.git >>/var/log/Awesomesauce/install.log
+cd zshconfig >>/var/log/Awesomesauce/install.log
+git checkout teamproject >>/var/log/Awesomesauce/install.log
+cp terminalparty.zsh-theme ~/.oh-my-zsh/themes/terminalparty.zsh-theme >>/var/log/Awesomesauce/install.log
+cp zshrc ~/.zshrc >>/var/log/Awesomesauce/install.log
+apt-get install -y apache2 >>/var/log/Awesomesauce/install.log
+apt-get install -y build-essential >>/var/log/Awesomesauce/install.log
+apt-get install -y php5 >>/var/log/Awesomesauce/install.log
+apt-get install -y php5-dev >>/var/log/Awesomesauce/install.log
+apt-get install -y php-pear >>/var/log/Awesomesauce/install.log
+apt-get install -y php-cas >>/var/log/Awesomesauce/install.log
+pear channel-discover pear.phing.info >>/var/log/Awesomesauce/install.log
+pear install phing/phing >>/var/log/Awesomesauce/install.log
+pear install VersionControl_Git-alpha >>/var/log/Awesomesauce/install.log
 #---------------------------------------End Base System Install----------------------------------------------
 
 #-------------------------------------------Vagrant copy-----------------------------------------------------
@@ -63,7 +63,7 @@ DBUSER=root
 DBPASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 
-apt-get install -y debconf-utils>>/var/log/Awesomesauce/install.log
+apt-get install -y debconf-utils >>/var/log/Awesomesauce/install.log
 
 clear
   echo '****************************************'
@@ -75,7 +75,7 @@ clear
   echo '*                                      *'
   echo '****************************************'
 
-apt-get -qq update>>/var/log/Awesomesauce/install.log
+apt-get -qq update >>/var/log/Awesomesauce/install.log
 
 echo -e "\n--- Install base packages ---\n"
 clear
@@ -123,13 +123,13 @@ clear
   echo '*           -Installing MySQL settings *'
   echo '*                                      *'
   echo '****************************************'
-echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
-echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
-echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections >>/var/log/Awesomesauce/install.log
-echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
-echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
-echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections >>/var/log/Awesomesauce/install.log
-echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections>>/var/log/Awesomesauce/install.log
+echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
 apt-get -y install mysql-server-5.5 phpmyadmin >>/var/log/Awesomesauce/install.log
 
 
@@ -175,7 +175,7 @@ sed -i "s/disable_functions = .*//" /etc/php5/cli/php.ini >>/var/log/Awesomesauc
 
 echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf >>/var/log/Awesomesauce/install.log
 
-service apache2 restart > /dev/null 2>&1 >>/var/log/Awesomesauce/install.log
+service apache2 restart >>/var/log/Awesomesauce/install.log
 
 
 ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit >>/var/log/Awesomesauce/install.log
