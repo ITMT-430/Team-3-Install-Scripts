@@ -13,33 +13,31 @@ echo '---------------------------Base System Install - should be run on every sy
   echo '*           -Base system config        *'
   echo '*                                      *'
   echo '****************************************'
-  
-  mkdir /var/log/Awesomesauce
-  touch /var/log/Awesomesauce
+ 
 
-apt-get update >>/var/log/Awesomesauce/install.log
-apt-get install -y curl >>/var/log/Awesomesauce/install.log
-apt-get install -y git >>/var/log/Awesomesauce/install.log
-apt-get install -y vim >>/var/log/Awesomesauce/install.log
-apt-get install -y zsh >>/var/log/Awesomesauce/install.log
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh >>/var/log/Awesomesauce/install.log
-cp ~/.zshrc ~/.zshrc.orig >>/var/log/Awesomesauce/install.log
-mkdir /bs >>/var/log/Awesomesauce/install.log
-cd /bs >>/var/log/Awesomesauce/install.log
-git clone https://github.com/thegeekkid/zshconfig.git >>/var/log/Awesomesauce/install.log
-cd zshconfig >>/var/log/Awesomesauce/install.log
-git checkout teamproject >>/var/log/Awesomesauce/install.log
-cp terminalparty.zsh-theme ~/.oh-my-zsh/themes/terminalparty.zsh-theme >>/var/log/Awesomesauce/install.log
-cp zshrc ~/.zshrc >>/var/log/Awesomesauce/install.log
-apt-get install -y apache2 >>/var/log/Awesomesauce/install.log
-apt-get install -y build-essential >>/var/log/Awesomesauce/install.log
-apt-get install -y php5 >>/var/log/Awesomesauce/install.log
-apt-get install -y php5-dev >>/var/log/Awesomesauce/install.log
-apt-get install -y php-pear >>/var/log/Awesomesauce/install.log
-apt-get install -y php-cas >>/var/log/Awesomesauce/install.log
-pear channel-discover pear.phing.info >>/var/log/Awesomesauce/install.log
-pear install phing/phing >>/var/log/Awesomesauce/install.log
-pear install VersionControl_Git-alpha >>/var/log/Awesomesauce/install.log
+apt-get update
+apt-get install -y curl
+apt-get install -y git
+apt-get install -y vim
+apt-get install -y zsh
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.zshrc ~/.zshrc.orig
+mkdir /bs
+cd /bs
+git clone https://github.com/thegeekkid/zshconfig.git
+cd zshconfig
+git checkout teamproject
+cp terminalparty.zsh-theme ~/.oh-my-zsh/themes/terminalparty.zsh-theme
+cp zshrc ~/.zshrc
+apt-get install -y apache2
+apt-get install -y build-essential
+apt-get install -y php5
+apt-get install -y php5-dev
+apt-get install -y php-pear
+apt-get install -y php-cas
+pear channel-discover pear.phing.info
+pear install phing/phing
+pear install VersionControl_Git-alpha
 #---------------------------------------End Base System Install----------------------------------------------
 
 #-------------------------------------------Vagrant copy-----------------------------------------------------
@@ -64,7 +62,7 @@ DBUSER=root
 DBPASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 
-apt-get install -y debconf-utils >>/var/log/Awesomesauce/install.log
+apt-get install -y debconf-utils
 
 clear
   echo '****************************************'
@@ -76,7 +74,7 @@ clear
   echo '*                                      *'
   echo '****************************************'
 
-apt-get -qq update >>/var/log/Awesomesauce/install.log
+apt-get -qq update
 
 echo -e "\n--- Install base packages ---\n"
 clear
@@ -89,7 +87,7 @@ clear
   echo '*           -Installing dependancies   *'
   echo '*                                      *'
   echo '****************************************'
-apt-get -y install vim curl build-essential python-software-properties git >>/var/log/Awesomesauce/install.log
+apt-get -y install vim curl build-essential python-software-properties git
 
 clear
   echo '****************************************'
@@ -104,10 +102,10 @@ clear
   echo '*                                      *'
   echo '****************************************'
 
-add-apt-repository ppa:ondrej/php5 >>/var/log/Awesomesauce/install.log
-add-apt-repository ppa:chris-lea/node.js >>/var/log/Awesomesauce/install.log
+add-apt-repository ppa:ondrej/php5
+add-apt-repository ppa:chris-lea/node.js
 
-apt-get update >>/var/log/Awesomesauce/install.log
+apt-get update
 
 clear
   echo '****************************************'
@@ -130,7 +128,7 @@ echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-s
 echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
-apt-get -y install mysql-server-5.5 phpmyadmin >>/var/log/Awesomesauce/install.log
+apt-get -y install mysql-server-5.5 phpmyadmin
 
 
 clear
@@ -148,7 +146,7 @@ clear
   echo '*           -Installing PHP packages   *'
   echo '*                                      *'
   echo '****************************************'
-apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc >>/var/log/Awesomesauce/install.log
+apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc
 
 clear
   echo '****************************************'
@@ -167,18 +165,18 @@ clear
   echo '*                                      *'
   echo '****************************************'
 
-a2enmod rewrite >>/var/log/Awesomesauce/install.log
+a2enmod rewrite
 
-sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf >>/var/log/Awesomesauce/install.log
+sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
-sed -i "s/disable_functions = .*//" /etc/php5/cli/php.ini >>/var/log/Awesomesauce/install.log
+sed -i "s/disable_functions = .*//" /etc/php5/cli/php.ini
 
-echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf >>/var/log/Awesomesauce/install.log
+echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf
 
-service apache2 restart >>/var/log/Awesomesauce/install.log
+service apache2 restart
 
 
-ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit >>/var/log/Awesomesauce/install.log
+ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit
 
 
 clear
@@ -199,16 +197,16 @@ clear
   echo '*                                      *'
   echo '****************************************'
 
-git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html >>/var/log/Awesomesauce/install.log
+git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
 cd /var/www
 echo "|1|9OsmSEuZ5EMLdubXJqvGQWKZy7U=|jPTfKv77HnP0Y43rUWVYFEHTYYg= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 |1|4kcqAWcBo5grhb07eErD5NS2jd0=|WQmwnrFYtZtb7St9xOaVwkxSyjM= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 ">>/root/.ssh/known_hosts
 
 ssh-keygen -t rsa -b 4096 -C "brian@geekkidconsulting.com" -f /root/.ssh/gh_rsa -N ""
-eval "$(ssh-agent -s)" >>/var/log/Awesomesauce/install.log
-ssh-add ~/.ssh/gh_rsa >>/var/log/Awesomesauce/install.log
-nothing="" >>/var/log/Awesomesauce/install.log
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/gh_rsa
+nothing=""
 clear
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "+                                                                            +"
@@ -243,11 +241,11 @@ clear
   echo '*                                      *'
   echo '****************************************'
 
-git clone git@github.com:ITMT-430/team3-vagrant.git >>/var/log/Awesomesauce/install.log
-cp -R /var/www/team3-vagrant/clone-in-here/* /var/www/ >>/var/log/Awesomesauce/install.log
-rm -rf /var/www/team3-vagrant >>/var/log/Awesomesauce/install.log
-rm -rf /var/www/html/index.html >>/var/log/Awesomesauce/install.log
-git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html >>/var/log/Awesomesauce/install.log
+git clone git@github.com:ITMT-430/team3-vagrant.git
+cp -R /var/www/team3-vagrant/clone-in-here/* /var/www/
+rm -rf /var/www/team3-vagrant
+rm -rf /var/www/html/index.html
+git clone https://github.com/ITMT-430/team-3-irl.git /var/www/html
 
 
 clear
@@ -333,10 +331,10 @@ clear
   echo '****************************************'
 
 cd /bs
-git clone https://github.com/letsencrypt/letsencrypt >>/var/log/Awesomesauce/install.log
+git clone https://github.com/letsencrypt/letsencrypt
 cd letsencrypt
-a2enmod ssl >>/var/log/Awesomesauce/install.log
-service apache2 restart >>/var/log/Awesomesauce/install.log
+a2enmod ssl
+service apache2 restart
 # WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!
 # WARNING!                                          WARNING!
 # WARNING! Remove --test-cert for real deployment.  WARNING!
