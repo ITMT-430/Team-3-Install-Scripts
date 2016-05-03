@@ -14,7 +14,7 @@ function mainmenu {
   echo '*  What would you like to install/do?  *'
   echo '*                                      *'
   echo '****************************************'
-  OPTIONS="Jenkins Production Production-Backup Full-Environment Quit"
+  OPTIONS="Jenkins Production Quit"
   select opt in $OPTIONS; do
     if [ "$opt" = "Jenkins" ]; then
       failcount=0
@@ -22,12 +22,6 @@ function mainmenu {
     elif [ "$opt" = "Production" ]; then
       failcount=0
       production
-    elif [ "$opt" = "Full-Environment" ]; then
-      failcount=0
-      everything
-    elif [ "$opt" = "Production-Backup" ]; then
-      failcount=0
-      productionback
     elif [ "$opt" = "Quit" ]; then
       exit
     fi
