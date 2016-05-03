@@ -20,3 +20,8 @@ Rather than downloading the script, you can use curl to run the most up-to-date 
 
 
 If you want to download the script and run it that way, you can download the "deploy-environment.sh" script.  Please note that running the script by any other means than the command above *should* work, but it has not been tested, and is not supported.
+
+
+###This script *will* make changes to your computer.
+  1.  This script will install euca2ools
+  2.  This script will walk you through giving it the authorizations that it needs to connect to the new instances and configure them.
