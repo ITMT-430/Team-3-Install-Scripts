@@ -14,5 +14,9 @@ All scripts are executed through the main deployment script (deploy-environment.
   
 ##Script usage:
 Rather than downloading the script, you can use curl to run the most up-to-date script.
+
+
 **Syntax: "bash <(curl -s https://raw.githubusercontent.com/ITMT-430/Team-3-Install-Scripts/master/deploy-environment.sh)"**
+
+
 If you want to download the script and run it that way, you can download the "deploy-environment.sh" script.  Please note that running the script by any other means than the command above *should* work, but it has not been tested, and is not supported.
